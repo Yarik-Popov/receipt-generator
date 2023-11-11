@@ -1,7 +1,10 @@
+import os
 from openai import OpenAI
+from dotenv import load_dotenv
 
+load_dotenv()
 # OpenAI API key
-client = OpenAI(api_key="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")
+client = OpenAI(api_key=os.getenv('api_key'))
 
 
 def get_recipes(seasonings, items):
