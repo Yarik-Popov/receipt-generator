@@ -15,6 +15,7 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
+@app.route('/additem')
 
 if __name__ == '__main__':
     app.run(debug=True)
