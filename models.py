@@ -18,4 +18,4 @@ class FridgeItem(db.Model):
     input_date = db.Column(db.Date, default=datetime.utcnow)
 
     def __repr__(self):
-        return '<FridgeItem %r>' % self.name
+        return f"('{self.name}' -- '{self.expiry_date}')"
