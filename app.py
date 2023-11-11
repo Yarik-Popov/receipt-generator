@@ -17,7 +17,7 @@ def index():
 
 @app.route('/add_item')
 def additempage():
-    return render_template('Add.html')
+    return render_template('add.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
