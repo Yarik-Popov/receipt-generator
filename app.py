@@ -15,7 +15,7 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
-@app.route('/additem')
+@app.route('/add_item')
 def additempage():
     return render_template('Add.html')
 
