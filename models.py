@@ -12,7 +12,7 @@ class User(db.Model):
 
 class FridgeItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
+    name = db.Column(db.String(80), nullable=False)
     expiry_date = db.Column(db.Date, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # Foreign key to User table
     input_date = db.Column(db.Date, default=datetime.utcnow)
