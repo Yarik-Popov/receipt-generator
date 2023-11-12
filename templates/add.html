@@ -2,18 +2,21 @@
 
 {% block title %}Adding an item{% endblock %}
 
+{% block head %}
+<link href="{{ url_for('static', filename='add.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <h1>What's you wanna add?</h1>
-    <h2>Input the info about the ingredient</h2>
+    <p>Input the info about the ingredient</p>
     <form action="/submit" method="post">
-        <label for="name">Item Name:</label><br>
-        <input type="text" id="name" name="name" required><br>
+        <label class="name" for="name">Item Name:</label><br>
+        <input class="textbox" type="text" id="name" name="name" required><br>
         
         <label for="expiry_date">Expiry Date:</label><br>
-        <input type="date" id="expiry_date" name="expiry_date" required><br>
+        <input class="textbox" type="date" id="expiry_date" name="expiry_date" required><br>
 
-        
-        <input type="submit" value="Submit">
+        <input class="submit" type="submit" value="Submit">
         
     </form>
     <!-- In your HTML template for '/some_other_page' -->
