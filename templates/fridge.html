@@ -15,7 +15,7 @@
                     <th>Cook</th>
                     <th>Ingredient</th>
                     <th>Expiry Date</th>
-                    <th>Delete</th>>
+                    <th>Delete</th>
                 </tr>
             </thread>
             <tbody>
@@ -26,14 +26,21 @@
                         <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
                         <td>
                             <form action="{{ url_for('delete_item', item_id=item.id) }}" method="POST">
-                                <input type="submit" value="Delete">
+                                <input class="delete" type="submit" value="Delete">
                             </form>
-                            </td>>
+                            </td>
                     </tr>
                     {% endfor %}
                     
                 </tbody>
             </table>
         <input class="submit" type="submit" value="Submit">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     
 {% endblock %}
