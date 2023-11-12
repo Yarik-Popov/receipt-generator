@@ -20,17 +20,6 @@ def fridge():
     return render_template('fridge.html', items=items)
         
 
-@app.route('/generate_recipe', methods=['POST'])
-def generate_recipe():
-    requested_items = request.form.getlist("items")
-    print(requested_items)
-    recipe = 'recipe'
-    image_url = 'image_url'
-    # recipe = get_recipes([], requested_items)  # No seasonings
-    # image_url = get_image(recipe)
-    return render_template('recipe.html', recipe=recipe, image_url=image_url)
-
-
 @app.route('/')
 def starter():
     return render_template('index.html')
