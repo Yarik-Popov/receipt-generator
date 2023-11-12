@@ -2,6 +2,10 @@
 
 {% block title %}Intro Page{% endblock %}
 
+{% block head %}
+<link href="{{ url_for('static', filename='fridge.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <h1>Fridge</h1>
     <p>Here you can find all the food you have in your fridge.</p>
