@@ -1,4 +1,6 @@
 * {
+  text-align: center;
+  align-content: center;
   box-sizing: border-box;
   margin: 1;
   padding: 3;
@@ -50,12 +52,12 @@
   
   .hero {
     background: white;
-  
   }
   
   .hero-container {
-    margin-left: 10px;
-    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
     grid-template-columns: 1fr 1fr;
     height: 5;
     padding: 3rem calc((100vw - 1225px) / 2);

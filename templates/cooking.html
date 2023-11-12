@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Kitchen{% endblock %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='fridge.css') }}" rel="stylesheet">
+
+{% endblock %}
+<div class="loading-spinner" id="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+</div>
+
+{% block content %}
+    <h1>Kitchen</h1>
+    <p>Here you can find all the food you have in your fridge.</p>
+        <table class="content-table">
+            <thread>
+                <tr class="headder">
+                    <th>Cook</th>
+                    <th>Ingredient</th>
+                    <th>Expiry Date</th>
+                </tr>
+            </thread>
+            <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td><input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked></td>
+                        <td><label for="{{item.id}}"> {{item.name}}</label> </td>
+                        <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
+                        <td>
+                            </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        <input class="submit" type="submit" value="Generate recipe!">
+
+         <!-- Loading spinner -->
+         <div class="loading-spinner" id="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+        <a href="/fridge">
+            <button>Go back to fridge</button>
+        </a>
+
+          
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <script>
+        document.querySelector('.submit').addEventListener('click', function() {
+            var spinner = document.getElementById('loading-spinner');
+            spinner.style.display = 'block';
+
+            setTimeout(function() {
+                spinner.style.display = 'none'; 
+            }, 3000); // replace the 3000 with our actually function when it's done
+        });
+    </script>
+
+{% endblock %}
