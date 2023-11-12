@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Fridge{% endblock %}
+{% block title %}Kitchen{% endblock %}
 
 {% block head %}
 <link href="{{ url_for('static', filename='fridge.css') }}" rel="stylesheet">
@@ -12,7 +12,7 @@
 </div>
 
 {% block content %}
-    <h1>Fridge</h1>
+    <h1>Kitchen</h1>
     <p>Here you can find all the food you have in your fridge.</p>
         <table class="content-table">
             <thread>
@@ -20,7 +20,6 @@
                     <th>Cook</th>
                     <th>Ingredient</th>
                     <th>Expiry Date</th>
-                    <th>Delete</th>
                 </tr>
             </thread>
             <tbody>
@@ -30,9 +29,6 @@
                         <td><label for="{{item.id}}"> {{item.name}}</label> </td>
                         <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
                         <td>
-                            <form action="{{ url_for('delete_item', item_id=item.id) }}" method="POST">
-                                <input class="delete" type="submit" value="Delete">
-                            </form>
                             </td>
                     </tr>
                     {% endfor %}
@@ -41,18 +37,16 @@
             </table>
         <input class="submit" type="submit" value="Generate recipe!">
 
-        <a href="/cooking">
-            <button>Go cooking!</button>
-        </a>
-
          <!-- Loading spinner -->
          <div class="loading-spinner" id="loading-spinner">
             <div class="spinner"></div>
             <p>Loading...</p>
         </div>
-        <a href="/add_item">
-            <button>Wanna add more?</button>
-          </a>
+        <a href="/fridge">
+            <button>Go back to fridge</button>
+        </a>
+
+          
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
