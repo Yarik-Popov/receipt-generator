@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, 
-    initial-scale=1.0">
-    <title>Fridge</title>
-    <link rel="stylesheet" href="static/buttons.css">
+{% extends "base.html" %}
 
-</head>
-<body>
-  <div class="banner">
+{% block title %} Home {% endblock %}
+
+{% block content %}
+  <div class="index-content">
     
     <section class="hero">
       <div class="hero-container">
@@ -25,8 +19,5 @@
     </section>
 
   </div>
-
-
-</body>
-</html>
+{% endblock %}
 
