@@ -36,12 +36,7 @@ def starter():
     return render_template('index.html')
 
 
-@app.route('/add_item')
-def add_item():
-    return render_template('add.html')
-
-  
-@app .route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST'])
 def submit():
     name = request.form.get('name')
     expiry_date = request.form.get('expiry_date')
@@ -54,9 +49,10 @@ def submit():
     db.session.add(new_item)
     db.session.commit()
     flash('New ingredient added successfully!')
-    return redirect('/add_item')
+    return redirect('/fridge')
 
-@app.route('/delete_item/<int:item_id>', methods=['DELETE'])
+
+@app.route('/delete_item/<int:item_id>', methods=['POST'])
 def delete_item(item_id):
     item_to_delete = FridgeItem.query.get(item_id)
     if item_to_delete:
