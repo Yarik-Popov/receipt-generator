@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+    margin: 1;
+    padding: 5;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
+  }
+  
+  .banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(url(13684529_5301586.jpg));
+    background-size: cover;
+    background-position: center;
+  }
+  nav {
+    height: 80px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem calc((100vw-1300px) / 2);
+  
+  }
+  
+  .logo {
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0 2rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: black;
+    padding: 0 1.5rem;
+  
+  }
+  
+  nav a:hover {
+    opacity: 0.5;
+  }
+  
+  .hero {
+    background: white;
+  
+  }
+  
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 5;
+    padding: 3rem calc((100vw - 1225px) / 2);
+  }
+  
+  .column-left {
+    margin-bottom: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: black;
+    padding: 0rem 2rem;
+  }
+  
+  .column-left h1 {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+  }
+  
+  .column-left p {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  button {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    background-color: black;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.35s, 
+      color 0.35s;
+  
+    margin-left: 25px;
+    
+  }
+  
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  button:active {
+    opacity: 0.7;
+  }
+  
+  .column-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 330px;
+    padding: 0rem 2rem;
+  }
+  
+  .hero-image {
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media screen and (max-width: 760px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  

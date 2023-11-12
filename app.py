@@ -1,6 +1,6 @@
 # Local imports
 from base import app, db
-from models import User, FridgeItem
+from models import User, FridgeItem, get_all_fridge_items
 from datetime import datetime
 
 
@@ -15,10 +15,15 @@ with app.app_context():
     db.session.commit()
 
 
+@app.route('/')
+def starter():
+    return render_template('index.html')
+
+
 @app.route('/fridge', methods=['GET', 'POST'])
 def fridge():
     if request.method == 'GET':
-        items = models.get_all_fridge_items()
+        items = get_all_fridge_items()
         return render_template('fridge.html', items=items)
     else:
         requested_items = request.form.getlist("items")
