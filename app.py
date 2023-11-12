@@ -14,16 +14,21 @@ with app.app_context():
     db.session.commit()
 
 
-@app.route('/fridge', methods=['GET', 'POST'])
+@app.route('/fridge', methods=['GET'])
 def fridge():
-    if request.method == 'GET':
-        items = get_all_fridge_items()
-        return render_template('fridge.html', items=items)
-    else:
-        requested_items = request.form.getlist("items")
-        recipe = get_recipes([], requested_items)  # No seasonings
-        image_url = get_image(recipe)
-        return render_template('recipe.html', recipe=recipe, image_url=image_url)
+    items = get_all_fridge_items()
+    return render_template('fridge.html', items=items)
+        
+
+@app.route('/generate_recipe', methods=['POST'])
+def generate_recipe():
+    requested_items = request.form.getlist("items")
+    print(requested_items)
+    recipe = 'recipe'
+    image_url = 'image_url'
+    # recipe = get_recipes([], requested_items)  # No seasonings
+    # image_url = get_image(recipe)
+    return render_template('recipe.html', recipe=recipe, image_url=image_url)
 
 
 @app.route('/')
@@ -31,12 +36,7 @@ def starter():
     return render_template('index.html')
 
 
-@app.route('/add_item')
-def add_item():
-    return render_template('add.html')
-
-  
-@app .route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST'])
 def submit():
     name = request.form.get('name')
     expiry_date = request.form.get('expiry_date')
@@ -49,7 +49,8 @@ def submit():
     db.session.add(new_item)
     db.session.commit()
     flash('New ingredient added successfully!')
-    return redirect('/add_item')
+    return redirect('/fridge')
+
 
 
 @app.route('/cooking', methods=['GET','POST'])
