@@ -18,7 +18,7 @@ with app.app_context():
 @app.route('/fridge', methods=['GET', 'POST'])
 def fridge():
     if request.method == 'GET':
-        items = models.get_all_fridge_items()
+        items = get_all_fridge_items()
         return render_template('fridge.html', items=items)
     else:
         requested_items = request.form.getlist("items")
