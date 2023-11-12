@@ -15,9 +15,15 @@ with app.app_context():
     db.session.commit()
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('index.html')
+@app.route('/fridge', methods=['GET', 'POST'])
+def fridge():
+    if request.method == 'GET':
+        items = models.get_all_fridge_items()
+        return render_template('fridge.html', items=items)
+    else:
+        requested_items = request.form.getlist("items")
+        print(requested_items)
+        return redirect('/fridge')
 
 @app.route('/add-item')
 def add_item():

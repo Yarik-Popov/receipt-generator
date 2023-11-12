@@ -19,3 +19,8 @@ class FridgeItem(db.Model):
 
     def __repr__(self):
         return f"('{self.name}' -- '{self.expiry_date}')"
+    
+
+def get_all_fridge_items():
+    return FridgeItem.query.all()
+
