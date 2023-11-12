@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Intro Page{% endblock %}
-
+{% block title %} Home {% endblock %}
+{% block head %} {% endblock %}
 {% block content %}
-    <h1>Fridge</h1>
+  <div class="index-content">
+    
+    <section class="hero">
+      <div class="hero-container">
+        <h1>Have near-spoiled food but don't know what to make?</h1>
+        <div class="column-left"></div>
+        
+        <p>Our project uses AI to formulate a recipe that you can use to make yourself a nice meal and reduce food waste.</p>
+      </div>
+      <a href="/fridge">
+        <button>Get Started</button>
+      </a>
+  
+    </section>
+
+  </div>
 {% endblock %}
+
