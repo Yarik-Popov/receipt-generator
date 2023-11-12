@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Fridge Page{% endblock %}
+
+{% block content %}
+
+{% for line in recipe.splitlines() %}
+
+{{line}} <br>
+
+{% endfor %}
+
+<br>
+<button onclick="window.location.href='/fridge'">Back to Fridge</button>
+
+{% if image_url != "" %}
+
+<img src="{{image_url}}" alt="Recipe Image" width="1024" height="1024">
+
+{% endif %}
+{% endblock %}

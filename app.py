@@ -1,12 +1,13 @@
 # Local imports
 from base import app, db
 from models import User, FridgeItem, get_all_fridge_items
-from datetime import datetime
+from recipe import get_recipes, get_image
 
 
 # 3rd party imports
-from flask import request, render_template, flash, redirect
+from flask import request, render_template, redirect, flash
 
+from datetime import datetime
 
 # Create the database
 with app.app_context():
@@ -14,6 +15,17 @@ with app.app_context():
     db.session.add(User(name='Main'))
     db.session.commit()
 
+
+@app.route('/fridge', methods=['GET', 'POST'])
+def fridge():
+    if request.method == 'GET':
+        items = models.get_all_fridge_items()
+        return render_template('fridge.html', items=items, recipes=None)
+    else:
+        requested_items = request.form.getlist("items")
+        recipe = get_recipes([], requested_items)  # No seasonings
+        image_url = get_image(recipe)
+        return render_template('recipe.html', recipe=recipe, image_url=image_url)
 
 @app.route('/')
 def starter():
@@ -34,6 +46,7 @@ def fridge():
 def add_item():
     return render_template('add.html')
 
+  
 @app .route('/submit', methods=['POST'])
 def submit():
     name = request.form.get('name')
@@ -48,6 +61,7 @@ def submit():
     db.session.commit()
     flash('New ingredient added successfully!')
     return redirect('/add-item')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
