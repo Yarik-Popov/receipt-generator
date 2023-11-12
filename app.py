@@ -14,16 +14,21 @@ with app.app_context():
     db.session.commit()
 
 
-@app.route('/fridge', methods=['GET', 'POST'])
+@app.route('/fridge', methods=['GET'])
 def fridge():
-    if request.method == 'GET':
-        items = get_all_fridge_items()
-        return render_template('fridge.html', items=items)
-    else:
-        requested_items = request.form.getlist("items")
-        recipe = get_recipes([], requested_items)  # No seasonings
-        image_url = get_image(recipe)
-        return render_template('recipe.html', recipe=recipe, image_url=image_url)
+    items = get_all_fridge_items()
+    return render_template('fridge.html', items=items)
+        
+
+@app.route('/generate_recipe', methods=['POST'])
+def generate_recipe():
+    requested_items = request.form.getlist("items")
+    print(requested_items)
+    recipe = 'recipe'
+    image_url = 'image_url'
+    # recipe = get_recipes([], requested_items)  # No seasonings
+    # image_url = get_image(recipe)
+    return render_template('recipe.html', recipe=recipe, image_url=image_url)
 
 
 @app.route('/')
@@ -51,7 +56,7 @@ def submit():
     flash('New ingredient added successfully!')
     return redirect('/add_item')
 
-@app.route('/delete_item/<int:item_id>', methods=['POST'])
+@app.route('/delete_item/<int:item_id>', methods=['DELETE'])
 def delete_item(item_id):
     item_to_delete = FridgeItem.query.get(item_id)
     if item_to_delete:
