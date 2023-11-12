@@ -4,8 +4,8 @@
 
 {% block head %}
 <link href="{{ url_for('static', filename='fridge.css') }}" rel="stylesheet">
-
 {% endblock %}
+
 <div class="loading-spinner" id="loading-spinner">
     <div class="spinner"></div>
     <p>Loading...</p>
@@ -14,46 +14,43 @@
 {% block content %}
     <h1>Kitchen</h1>
     <p>Here you can find all the food you have in your fridge.</p>
+    <!-- Start of the form -->
+    <form action="/get_items" method="post">
         <table class="content-table">
-            <thread>
-                <tr class="headder">
+            <thead>
+                <tr class="header">
                     <th>Cook</th>
                     <th>Ingredient</th>
                     <th>Expiry Date</th>
                 </tr>
-            </thread>
+            </thead>
             <tbody>
                     {% for item in items %}
                     <tr>
-                        <td><input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked></td>
-                        <td><label for="{{item.id}}"> {{item.name}}</label> </td>
+                        <td><input type="checkbox" name="items" id="item_{{item.id}}" value="{{item.id}}"></td>
+                        <td><label for="item_{{item.id}}"> {{item.name}}</label></td>
                         <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
-                        <td>
-                            </td>
                     </tr>
                     {% endfor %}
-                    
-                </tbody>
-            </table>
+            </tbody>
+        </table>
         <input class="submit" type="submit" value="Generate recipe!">
+    </form>
 
-         <!-- Loading spinner -->
-         <div class="loading-spinner" id="loading-spinner">
-            <div class="spinner"></div>
-            <p>Loading...</p>
-        </div>
-        <a href="/fridge">
-            <button>Go back to fridge</button>
-        </a>
+    <div class="loading-spinner" id="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+    <a href="/fridge">
+        <button type="button">Go back to fridge</button>
+    </a>
 
-          
-
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        {% endif %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
     {% endwith %}
     
     <script>
@@ -63,7 +60,7 @@
 
             setTimeout(function() {
                 spinner.style.display = 'none'; 
-            }, 3000); // replace the 3000 with our actually function when it's done
+            }, 3000); // replace the 3000 with your actual function when it's done
         });
     </script>
 
