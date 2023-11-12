@@ -6,18 +6,40 @@
 <link href="{{ url_for('static', filename='fridge.css') }}" rel="stylesheet">
 
 {% endblock %}
-<div class="loading-spinner" id="loading-spinner">
-    <div class="spinner"></div>
-    <p>Loading...</p>
-</div>
 
 {% block content %}
     <h1>Fridge</h1>
+
+    <h1>What do you wanna add?</h1>
+    <p>Input the info about the ingredient</p>
+    <form action="/submit" method="post">
+        <label class="name" for="name">Item Name:</label><br>
+        <input class="textbox" type="text" placeholder="ex. Onion" id="name" name="name" required><br>
+        
+        <label for="expiry_date">Expiry Date:</label><br>
+        <input class="textbox" type="date" id="expiry_date" name="expiry_date" required><br>
+
+        <input class="submit" type="submit" value="Add to fridge!">
+    </form>
+
+    <!-- Adds the current day as the default -->
+    <script>
+        document.getElementById('expiry_date').valueAsDate = new Date();
+    </script>
+
+    <!-- In your HTML template for '/some_other_page' -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h2>{{ message }}</h2>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <p>Here you can find all the food you have in your fridge.</p>
         <table class="content-table">
             <thread>
                 <tr class="headder">
-                    <th>Cook</th>
                     <th>Ingredient</th>
                     <th>Expiry Date</th>
                     <th>Delete</th>
@@ -26,7 +48,6 @@
             <tbody>
                     {% for item in items %}
                     <tr>
-                        <td><input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked></td>
                         <td><label for="{{item.id}}"> {{item.name}}</label> </td>
                         <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
                         <td>
@@ -39,38 +60,7 @@
                     
                 </tbody>
             </table>
-        <input class="submit" type="submit" value="Generate recipe!">
 
-        <a href="/cooking">
-            <button>Go cooking!</button>
-        </a>
-
-         <!-- Loading spinner -->
-         <div class="loading-spinner" id="loading-spinner">
-            <div class="spinner"></div>
-            <p>Loading...</p>
-        </div>
-        <a href="/add_item">
-            <button>Wanna add more?</button>
-          </a>
-
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    
-    <script>
-        document.querySelector('.submit').addEventListener('click', function() {
-            var spinner = document.getElementById('loading-spinner');
-            spinner.style.display = 'block';
-
-            setTimeout(function() {
-                spinner.style.display = 'none'; 
-            }, 3000); // replace the 3000 with our actually function when it's done
-        });
-    </script>
+<button class="back" onclick="window.location.href='/cooking'">Back to Kitchen</button>
 
 {% endblock %}

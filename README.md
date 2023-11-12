@@ -1,6 +1,7 @@
 # hack-the-change-2023
 Hack the Change 2023 Repo for the Dr.Racket team
-
+## Introduction
+The goal of the project is helping people to get rid of waste of food. The webapp could let you make a meal with the ingredients that almost expired in your fridge. ChatGPT will tell you what to make by them.
 ## Style guide
 We will be following the Python style guide
 - Variables and functions are snake case `my_var` `my_func()`
