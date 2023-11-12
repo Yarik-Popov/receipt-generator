@@ -4,7 +4,12 @@
 
 {% block head %}
 <link href="{{ url_for('static', filename='fridge.css') }}" rel="stylesheet">
+
 {% endblock %}
+<div class="loading-spinner" id="loading-spinner">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+</div>
 
 {% block content %}
     <h1>Fridge</h1>
@@ -38,6 +43,13 @@
         <a href="/add_item">
             <button>Add something!</button>
         </a>
+
+         <!-- Loading spinner -->
+         <div class="loading-spinner" id="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -46,4 +58,15 @@
         {% endif %}
     {% endwith %}
     
+    <script>
+        document.querySelector('.submit').addEventListener('click', function() {
+            var spinner = document.getElementById('loading-spinner');
+            spinner.style.display = 'block';
+
+            setTimeout(function() {
+                spinner.style.display = 'none'; 
+            }, 3000); // replace the 3000 with our actually function when it's done
+        });
+    </script>
+
 {% endblock %}
