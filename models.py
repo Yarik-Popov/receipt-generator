@@ -19,3 +19,8 @@ class FridgeItem(db.Model):
 
     def __repr__(self):
         return '<FridgeItem %r>' % self.name
+    
+
+def get_all_fridge_items():
+    return FridgeItem.query.all()
+

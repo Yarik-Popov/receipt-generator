@@ -1,9 +1,11 @@
 # Local imports
 from base import app, db
 from models import User, FridgeItem
+import models
+
 
 # 3rd party imports
-from flask import request, render_template
+from flask import request, render_template, redirect
 
 
 # Create the database
@@ -11,9 +13,15 @@ with app.app_context():
     db.create_all()
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    return render_template('index.html')
+@app.route('/fridge', methods=['GET', 'POST'])
+def fridge():
+    if request.method == 'GET':
+        items = models.get_all_fridge_items()
+        return render_template('fridge.html', items=items)
+    else:
+        requested_items = request.form.getlist("items")
+        print(requested_items)
+        return redirect('/fridge')
 
 
 if __name__ == '__main__':
