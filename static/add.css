@@ -1,16 +1,3 @@
-*{
-    box-sizing: border-box;
-    margin: 1;
-    padding: 5;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bold;
-    font-style: normal;
-}
-
-h1 {
-    font-style: italic;
-}
-
 .textbox {
     display: flex;
 }
