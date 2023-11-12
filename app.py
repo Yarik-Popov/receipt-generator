@@ -7,6 +7,7 @@ from recipe import get_recipes, get_image
 from flask import request, render_template, redirect, flash
 
 from datetime import datetime
+from time import perf_counter
 
 # Create the database
 with app.app_context():
@@ -19,11 +20,16 @@ with app.app_context():
 def fridge():
     if request.method == 'GET':
         items = get_all_fridge_items()
-        return render_template('fridge.html', items=items)
+        return render_template('fridge.html', items=items)  
     else:
         requested_items = request.form.getlist("items")
+        start_recipe = perf_counter()
         recipe = get_recipes([], requested_items)  # No seasonings
+        end_recipe = perf_counter()
         image_url = get_image(recipe)
+        end_image = perf_counter()
+        print(f"Recipe generation took {end_recipe - start_recipe} seconds")
+        print(f"Image generation took {end_image - end_recipe} seconds")
         return render_template('recipe.html', recipe=recipe, image_url=image_url)
 
 @app.route('/')

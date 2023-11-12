@@ -12,7 +12,7 @@ def get_recipes(seasonings: [str], items: [str]):
     prompt_text = f"Generate one recipe based on the following seasonings and items:\nSeasonings: {', '.join(seasonings)}\nItems: {', '.join(items)}"
     
     # Call the OpenAI API with the prompt
-    response = client.chat.completions.create(model="gpt-4",  # Or the most appropriate model you have access to
+    response = client.chat.completions.create(model="gpt-3.5-turbo",  # Or the most appropriate model you have access to
     messages=[
         {"role": "system", "content": f"You are a helpful assistant providing recipes."},
         {"role": "user", "content": prompt_text}
