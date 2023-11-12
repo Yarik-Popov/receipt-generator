@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 1;
-  padding: 5;
+  padding: 3;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: bold;
   font-style: normal;
@@ -54,6 +54,7 @@
   }
   
   .hero-container {
+    margin-left: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 5;
@@ -93,10 +94,7 @@
     cursor: pointer;
     border-radius: 50px;
     transition: background-color 0.35s, 
-      color 0.35s;
-  
-    margin-left: 25px;
-    
+    color 0.35s;
   }
   
   button:hover {
