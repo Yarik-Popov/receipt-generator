@@ -7,7 +7,7 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv('api_key'))
 
 
-def get_recipes(seasonings, items):
+def get_recipes(seasonings: [str], items: [str]):
     # Create a conversation-like prompt based on the input
     prompt_text = f"Generate one recipe based on the following seasonings and items:\nSeasonings: {', '.join(seasonings)}\nItems: {', '.join(items)}"
     
@@ -21,6 +21,19 @@ def get_recipes(seasonings, items):
     # Extract the response
     message_content = response.choices[0].message.content
     return message_content
+
+
+def get_image(answer: str):
+    """Get an image from the OpenAI API based on the answer to the prompt"""
+    image_response = client.images.generate(
+        model="dall-e-3",
+        prompt=answer,
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
+    return image_response.data[0].url
+
 
 if __name__ == '__main__':
     # Example usage
