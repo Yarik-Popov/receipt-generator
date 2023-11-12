@@ -13,5 +13,6 @@ We will be following the Python style guide
 - Convention `<name>/<feature>`. Ex: `yarik/cool-feature`
 
 ## Environment
-Create a python environement by running `python3 -m venv .venv`
-Source it `source .venv/bin/activate` on Mac/Linux/WSL
+- Create a python environement by running `python3 -m venv .venv`
+- Source it `source .venv/bin/activate` on Mac/Linux/WSL
+- Run `pip install -r requirements.txt`
