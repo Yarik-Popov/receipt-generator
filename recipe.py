@@ -9,10 +9,7 @@ client = OpenAI(api_key=os.getenv('api_key'))
 
 def get_recipes(seasonings, items):
     # Create a conversation-like prompt based on the input
-    prompt_text = "Generate one recipe based on the following seasonings and items:\nSeasonings: {}\nItems: {}\n".format(
-        ", ".join(seasonings),
-        ", ".join(items)
-    )
+    prompt_text = f"Generate one recipe based on the following seasonings and items:\nSeasonings: {', '.join(seasonings)}\nItems: {', '.join(items)}"
     
     # Call the OpenAI API with the prompt
     response = client.chat.completions.create(model="gpt-4",  # Or the most appropriate model you have access to
