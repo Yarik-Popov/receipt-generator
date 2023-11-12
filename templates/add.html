@@ -1,7 +1,28 @@
 {% extends "base.html" %}
 
 {% block title %}Adding an item{% endblock %}
-
+{% block head %} {% endblock %}
 {% block content %}
     <h1>What's you wanna add?</h1>
+    <h2>Input the info about the ingredient</h2>
+    <form action="/submit" method="post">
+        <label for="name">Item Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        
+        <label for="expiry_date">Expiry Date:</label><br>
+        <input type="date" id="expiry_date" name="expiry_date" required><br>
+
+        
+        <input type="submit" value="Submit">
+        
+    </form>
+    <!-- In your HTML template for '/some_other_page' -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
 {% endblock %}
