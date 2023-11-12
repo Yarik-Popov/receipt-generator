@@ -9,13 +9,13 @@
 {% block content %}
     <h1>Fridge</h1>
     <p>Here you can find all the food you have in your fridge.</p>
-    <form method="post" action="#">
         <table class="content-table">
             <thread>
                 <tr class="headder">
                     <th>Cook</th>
                     <th>Ingredient</th>
                     <th>Expiry Date</th>
+                    <th>Delete</th>>
                 </tr>
             </thread>
             <tbody>
@@ -24,12 +24,16 @@
                         <td><input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked></td>
                         <td><label for="{{item.id}}"> {{item.name}}</label> </td>
                         <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
+                        <td>
+                            <form action="{{ url_for('delete_item', item_id=item.id) }}" method="POST">
+                                <input type="submit" value="Delete">
+                            </form>
+                            </td>>
                     </tr>
                     {% endfor %}
                     
                 </tbody>
             </table>
         <input class="submit" type="submit" value="Submit">
-    </form>
     
 {% endblock %}
