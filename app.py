@@ -3,7 +3,6 @@ from base import app, db
 from models import User, FridgeItem, get_all_fridge_items
 from recipe import get_recipes, get_image
 
-
 # 3rd party imports
 from flask import request, render_template, redirect, flash
 
@@ -20,7 +19,7 @@ with app.app_context():
 def fridge():
     if request.method == 'GET':
         items = models.get_all_fridge_items()
-        return render_template('fridge.html', items=items, recipes=None)
+        return render_template('fridge.html', items=items)
     else:
         requested_items = request.form.getlist("items")
         recipe = get_recipes([], requested_items)  # No seasonings
@@ -31,16 +30,6 @@ def fridge():
 def starter():
     return render_template('index.html')
 
-
-@app.route('/fridge', methods=['GET', 'POST'])
-def fridge():
-    if request.method == 'GET':
-        items = get_all_fridge_items()
-        return render_template('fridge.html', items=items)
-    else:
-        requested_items = request.form.getlist("items")
-        print(requested_items)
-        return redirect('/fridge')
 
 @app.route('/add-item')
 def add_item():
