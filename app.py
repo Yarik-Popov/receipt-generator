@@ -21,10 +21,9 @@ def fridge():
         return render_template('fridge.html', items=items, recipes=None)
     else:
         requested_items = request.form.getlist("items")
-        recipe = get_recipes([], requested_items)
-        print(recipe)
-        print(get_image(recipe))
-        return render_template('recipe.html', recipe=recipe)
+        recipe = get_recipes([], requested_items)  # No seasonings
+        image_url = get_image(recipe)
+        return render_template('recipe.html', recipe=recipe, image_url=image_url)
 
 
 @app.route('/add-item')

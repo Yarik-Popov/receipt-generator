@@ -25,14 +25,18 @@ def get_recipes(seasonings: [str], items: [str]):
 
 def get_image(answer: str):
     """Get an image from the OpenAI API based on the answer to the prompt"""
-    image_response = client.images.generate(
-        model="dall-e-3",
-        prompt=answer,
-        size="1024x1024",
-        quality="standard",
-        n=1,
-    )
-    return image_response.data[0].url
+    try: 
+        image_response = client.images.generate(
+            model="dall-e-3",
+            prompt=answer,
+            size="1024x1024",
+            quality="standard",
+            n=1,
+        )
+        return image_response.data[0].url
+    except Exception as e:
+        print(e)
+        return ""
 
 
 if __name__ == '__main__':
