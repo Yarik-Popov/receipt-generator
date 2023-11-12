@@ -1,42 +1,55 @@
-import os
-from openai import OpenAI
-from dotenv import load_dotenv
-
-load_dotenv()
-# OpenAI API key
-client = OpenAI(api_key=os.getenv('api_key'))
+import requests
+from dataclasses import dataclass
 
 
-def get_recipes(seasonings: [str], items: [str]):
-    # Create a conversation-like prompt based on the input
-    prompt_text = f"Generate one recipe based on the following seasonings and items:\nSeasonings: {', '.join(seasonings)}\nItems: {', '.join(items)}"
-    
-    # Call the OpenAI API with the prompt
-    response = client.chat.completions.create(model="gpt-3.5-turbo",  # Or the most appropriate model you have access to
-    messages=[
-        {"role": "system", "content": f"You are a helpful assistant providing recipes."},
-        {"role": "user", "content": prompt_text}
-    ])
-
-    # Extract the response
-    message_content = response.choices[0].message.content
-    return message_content
+@dataclass
+class Recipe:
+    """A recipe object"""
+    name: str
+    ingredients: [str]
+    instructions: str
+    image: str
 
 
-def get_image(answer: str):
-    """Get an image from the OpenAI API based on the answer to the prompt"""
-    try: 
-        image_response = client.images.generate(
-            model="dall-e-3",
-            prompt=answer,
-            size="1024x1024",
-            quality="standard",
-            n=1,
-        )
-        return image_response.data[0].url
-    except Exception as e:
-        print(e)
-        return ""
+def get_recipes(items_to_include: [str]) -> [dict]:
+    url = "https://tasty.p.rapidapi.com/recipes/list"
+
+    querystring = {"from":"0","size":"5","q":f"{','.join(items_to_include)}"}
+
+    headers = {
+        "X-RapidAPI-Key": "b5169ce81dmsh997426a13200d04p10cfd6jsn184db561d74d",
+        "X-RapidAPI-Host": "tasty.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+    recipes = response.json()['results']
+    output = []
+    for i in recipes:
+        output.append({
+            'name': i['name'],
+            'ingredients': parse_ingredients(i['sections'][0]),
+            'instructions': parse_instructions(i['instructions']),
+            'thumbnail_url': i['thumbnail_url']
+        })
+    return output
+
+
+def parse_ingredients(sections: [dict]):
+    """Parse the ingredients from the Tasty API"""
+    parsed_ingredients = []
+    for item in sections['components']:
+        parsed_ingredients.append(item['raw_text'])
+    return parsed_ingredients
+
+
+def parse_instructions(instructions: [dict]):
+    """Parse the instructions from the Tasty API"""
+    parsed_instructions = ''
+    for i, val in enumerate(instructions, start=1):
+        parsed_instructions += f"{i}. "
+        parsed_instructions += (val['display_text'])
+        parsed_instructions += '\n'
+    return parsed_instructions
 
 
 if __name__ == '__main__':
