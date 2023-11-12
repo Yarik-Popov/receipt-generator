@@ -23,11 +23,9 @@ def fridge():
 @app.route('/generate_recipe', methods=['POST'])
 def generate_recipe():
     requested_items = request.form.getlist("items")
-    print(requested_items)
-    recipe = 'recipe'
-    image_url = 'image_url'
-    # recipe = get_recipes([], requested_items)  # No seasonings
-    # image_url = get_image(recipe)
+
+    recipe = get_recipes([], requested_items)  # No seasonings
+    image_url = get_image(recipe)
     return render_template('recipe.html', recipe=recipe, image_url=image_url)
 
 
@@ -55,11 +53,9 @@ def submit():
 
 @app.route('/cooking', methods=['GET','POST'])
 def cooking():
-    return render_template('cooking.html')
-   
-@app.route('/get_items', methods=['GET', 'POST'])
-def get_items():
-    return "cooking works well!"
+    items = get_all_fridge_items()
+    return render_template('cooking.html', items=items)
+
 
 @app.route('/delete_item/<int:item_id>', methods=['POST'])
 def delete_item(item_id):
