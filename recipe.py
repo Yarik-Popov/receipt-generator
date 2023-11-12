@@ -39,6 +39,14 @@ def get_image(answer: str):
         return ""
 
 
+class Recipe:
+    """A recipe object"""
+    name: str
+    ingredients: [str]
+    instructions: str
+    image: str
+    
+
 if __name__ == '__main__':
     # Example usage
     seasonings = ['salt', 'pepper', 'paprika', 'soy source', 'ketchap']
