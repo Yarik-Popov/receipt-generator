@@ -15,7 +15,7 @@
     <h1>Kitchen</h1>
     <p>Here you can find all the food you have in your fridge.</p>
     <!-- Start of the form -->
-    <form action="/get_items" method="post">
+    <form action="/generate_recipe" method="post">
         <table class="content-table">
             <thead>
                 <tr class="header">
@@ -27,7 +27,7 @@
             <tbody>
                     {% for item in items %}
                     <tr>
-                        <td><input type="checkbox" name="items" id="item_{{item.id}}" value="{{item.id}}"></td>
+                        <td><input type="checkbox" name="items" id="item_{{item.id}}" value="{{item.name}}"></td>
                         <td><label for="item_{{item.id}}"> {{item.name}}</label></td>
                         <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
                     </tr>
