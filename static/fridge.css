@@ -21,11 +21,12 @@ h1 {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.content-table thead tr {
+.headder {
     background-color: black;
-    color: black;
+    color: white;
     text-align: left;
     font-weight: bold;
+    opacity: 0.8;
 }
 
 .content-table th,
