@@ -55,6 +55,11 @@ def submit():
 def cooking():
     items = get_all_fridge_items()
     return render_template('cooking.html', items=items)
+  
+  
+@app.route('/get_items', methods=['GET', 'POST'])
+def get_items():
+    return "cooking works well!"
 
 
 @app.route('/delete_item/<int:item_id>', methods=['POST'])
