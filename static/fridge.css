@@ -1,9 +1,7 @@
-
-
 .content-table {
     border-collapse: collapse;
     margin: 5px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     min-width: 200px;
     border-radius: 5px 5px 0 0;
     overflow:hidden;
@@ -41,16 +39,26 @@
 }
 
 .delete {
-    padding: 0.75rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
     border: 1px solid black;
     border-radius: 2px;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
     cursor: pointer;
     border-radius: 30px;
     transition: background-color 0.35s, 
     color 0.35s;
+}
+
+.delete:hover {
+    background-color: black;
+    color: white;
+    transform: translate3d(-5px);
+}
+
+.delete:active {
+    opacity: 0.7;
 }
 
 .submit {
@@ -66,12 +74,12 @@
     transition: background-color 0.35s, 
       color 0.35s;
   }
-  input:hover {
+  .submit:hover {
     background-color: white;
     color: black;
     transform: translate3d(-5px);
   }
   
-  input:active {
+  .submit:active {
     opacity: 0.7;
   }

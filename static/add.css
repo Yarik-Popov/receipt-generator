@@ -1,5 +1,12 @@
 .textbox {
+    margin-top: 5px;
     display: flex;
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 50px;
 }
 
 .submit {
