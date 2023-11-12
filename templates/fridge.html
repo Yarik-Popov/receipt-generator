@@ -9,23 +9,27 @@
 {% block content %}
     <h1>Fridge</h1>
     <p>Here you can find all the food you have in your fridge.</p>
-    <table class="content-table">
-        <thread>
-            <tr class="headder">
-                <th>Cook</th>
-                <th>Ingredient</th>
-                <th>Expiry Date</th>
-            </tr>
-        </thread>
-        <tbody>
-                {% for item in items %}
-                <tr>
-                    <td><input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked></td>
-                    <td><label for="{{item.id}}"> {{item.name}}</label> </td>
-                    <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
+    <form method="post" action="#">
+        <table class="content-table">
+            <thread>
+                <tr class="headder">
+                    <th>Cook</th>
+                    <th>Ingredient</th>
+                    <th>Expiry Date</th>
                 </tr>
-                {% endfor %}
-        </tbody>
-    </table>
-    <input class="submit" type="submit" value="Submit">
+            </thread>
+            <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td><input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked></td>
+                        <td><label for="{{item.id}}"> {{item.name}}</label> </td>
+                        <td>{{item.expiry_date.strftime("%b %d, %Y")}}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+    
 {% endblock %}
