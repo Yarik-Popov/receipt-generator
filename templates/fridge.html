@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Intro Page{% endblock %}
+
+{% block content %}
+    <h1>Fridge</h1>
+    <p>Here you can find all the food you have in your fridge.</p>
+    <form action="#" method="post"> 
+        {% for item in items %}
+            <input type="checkbox" name="items" id="{{item.id}}" value="{{item.name}}" checked>
+            <label for="{{item.id}}"> {{item.name}} || {{item.expiry_date.strftime("%b %d, %Y")}}</label> <br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
