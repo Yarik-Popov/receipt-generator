@@ -35,7 +35,9 @@
                 </tbody>
             </table>
         <input class="submit" type="submit" value="Generate recipe!">
-
+        <a href="/add_item">
+            <button>Add something!</button>
+        </a>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}

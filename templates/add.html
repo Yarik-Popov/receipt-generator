@@ -17,8 +17,12 @@
         <input class="textbox" type="date" id="expiry_date" name="expiry_date" required><br>
 
         <input class="submit" type="submit" value="Add to fridge!">
-        
     </form>
+
+    <a href="/fridge">
+        <button>Go back to fridge</button>
+      </a>
+      
     <!-- In your HTML template for '/some_other_page' -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
