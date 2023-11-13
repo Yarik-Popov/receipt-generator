@@ -14,10 +14,9 @@
     <p>Input the info about the ingredient</p>
     <form action="/submit" method="post">
         <label class="name" for="name">Item Name:</label><br>
-        <input class="textbox" type="text" placeholder="ex. Onion" id="name" name="name" required><br>
-        
+        <input class="textbox1" type="text" placeholder="ex. Onion" id="name" name="name" required><br>
         <label for="expiry_date">Expiry Date:</label><br>
-        <input class="textbox" type="date" id="expiry_date" name="expiry_date" required><br>
+        <input class="textbox2" type="date" id="expiry_date" name="expiry_date" required><br>
 
         <input class="submit" type="submit" value="Add to fridge!">
     </form>
@@ -39,7 +38,7 @@
     <p>Here you can find all the food you have in your fridge.</p>
         <table class="content-table">
             <thread>
-                <tr class="headder">
+                <tr class="header">
                     <th>Ingredient</th>
                     <th>Expiry Date</th>
                     <th>Delete</th>
@@ -54,13 +53,13 @@
                             <form action="{{ url_for('delete_item', item_id=item.id) }}" method="POST">
                                 <input class="delete" type="submit" value="Delete">
                             </form>
-                            </td>
+                        </td>
                     </tr>
                     {% endfor %}
                     
                 </tbody>
             </table>
 
-<button class="back" onclick="window.location.href='/cooking'">Back to Kitchen</button>
+<button class="back" onclick="window.location.href='/cooking'">Go to Kitchen</button>
 
 {% endblock %}

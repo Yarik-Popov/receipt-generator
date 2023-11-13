@@ -37,13 +37,15 @@
         <input class="submit" type="submit" value="Generate recipe!">
     </form>
 
+    <a href="/fridge">
+        <button class="back">Back to fridge</button>
+    </a>
+
     <div class="loading-spinner" id="loading-spinner">
         <div class="spinner"></div>
         <p>Loading...</p>
     </div>
-    <a href="/fridge">
-        <button type="button">Go back to fridge</button>
-    </a>
+    
 
     {% with messages = get_flashed_messages() %}
     {% if messages %}
