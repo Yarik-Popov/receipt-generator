@@ -2,20 +2,24 @@
 
 {% block title %}Fridge Page{% endblock %}
 
+{% block head %}
+<link href="{{ url_for('static', filename='recipe.css') }}" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
 
 {% for line in recipe.splitlines() %}
 
-{{line}} <br>
+<p>{{line}}</p>
 
 {% endfor %}
 
-<br>
 {% if image_url != "" %}
 
 <img src="{{image_url}}" alt="Recipe Image" width="512" height="512">
-
+<br />
 {% endif %}
-<button onclick="window.location.href='/cooking'">Back to Fridge</button>
+<button class="backToFridge" onclick="window.location.href='/cooking'">Back to Kicken</button>
 
 {% endblock %}

@@ -1,0 +1,29 @@
+p {
+    text-align: left;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: normal;
+}
+
+.backToFridge {
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 2px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.35s, 
+    color 0.35s;
+}
+
+.backToFridge:hover {
+    background-color: black;
+    color: white;
+    transform: translate3d(-5px);
+}
+
+.backToFridge:active {
+    opacity: 0.7;
+}
