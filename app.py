@@ -56,6 +56,7 @@ def cooking():
     items = get_all_fridge_items()
     return render_template('cooking.html', items=items)
 
+
 @app.route('/delete_item/<int:item_id>', methods=['POST'])
 def delete_item(item_id):
     item_to_delete = FridgeItem.query.get(item_id)
